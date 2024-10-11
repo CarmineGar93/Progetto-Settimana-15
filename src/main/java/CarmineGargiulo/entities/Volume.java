@@ -9,6 +9,7 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "volume_type")
 @Table(name = "volums")
+@NamedQuery(name = "allVolums", query = "SELECT v FROM Volume v")
 public class Volume {
     @Id
     @GeneratedValue

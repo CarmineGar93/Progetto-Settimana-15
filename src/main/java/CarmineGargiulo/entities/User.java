@@ -1,5 +1,6 @@
 package CarmineGargiulo.entities;
 
+import com.github.javafaker.Faker;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -8,13 +9,13 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "allUsers", query = "SELECT u FROM User u")
 public class User {
     @Id
     @GeneratedValue
     @Column(name = "user_id")
     private UUID userId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "badge_nr")
+    @Column(name = "badge_nr", unique = true)
     private long badgeNr;
     @Column(nullable = false)
     private String name;
@@ -24,15 +25,18 @@ public class User {
     private LocalDate birthday;
     @OneToMany(mappedBy = "user")
     private List<Loan> loanList;
+    private static long count = 1;
 
     public User(){
 
     }
 
     public User(String name, String surname, LocalDate birthday) {
+        this.badgeNr = count;
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;
+        count ++;
     }
 
     public UUID getUserId() {

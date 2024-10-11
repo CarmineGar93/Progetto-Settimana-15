@@ -2,10 +2,12 @@ package CarmineGargiulo.entities;
 
 import CarmineGargiulo.enums.Periodicity;
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 @DiscriminatorValue("Magazine")
+@Entity
 public class Magazine extends Volume{
     @Enumerated(EnumType.STRING)
     private Periodicity periodicity;

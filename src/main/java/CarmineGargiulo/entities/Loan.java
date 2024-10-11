@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "loans")
+@NamedQuery(name = "allLoans", query = "SELECT l FROM Loan l")
 public class Loan {
     @Id
     @GeneratedValue

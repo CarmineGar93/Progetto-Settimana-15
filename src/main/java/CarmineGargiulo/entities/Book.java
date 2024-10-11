@@ -4,9 +4,10 @@ import CarmineGargiulo.enums.Genre;
 import jakarta.persistence.*;
 
 @DiscriminatorValue("Book")
+@Entity
 public class Book extends Volume{
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "author_id")
     private Author author;
     @Enumerated(EnumType.STRING)
     private Genre genre;
