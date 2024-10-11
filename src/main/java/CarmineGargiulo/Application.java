@@ -29,7 +29,7 @@ public class Application {
         UserDao userDao = new UserDao(em);
         VolumeDao volumeDao = new VolumeDao(em);
         LoanDao loanDao = new LoanDao(em);
-        /*initializeDbWithData(authorDao, userDao, volumeDao, loanDao);
+        initializeDbWithData(authorDao, userDao, volumeDao, loanDao);
 
         List<Author> authorListFromDb = authorDao.getAllAuthors();
         System.out.println("-----------------Exercise 1-------------------");
@@ -87,7 +87,7 @@ public class Application {
             System.out.println(loanDao.getAllExpiredAndNotYetReturnedLoans().size() + " loans expired");
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
-        }*/
+        }
 
     }
 
