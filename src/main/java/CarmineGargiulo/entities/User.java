@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 @NamedQuery(name = "allUsers", query = "SELECT u FROM User u")
 public class User {
+    private static final Random random = new Random();
     @Id
     @GeneratedValue
     @Column(name = "user_id")
@@ -25,18 +27,16 @@ public class User {
     private LocalDate birthday;
     @OneToMany(mappedBy = "user")
     private List<Loan> loanList;
-    private static long count = 1;
 
     public User(){
 
     }
 
     public User(String name, String surname, LocalDate birthday) {
-        this.badgeNr = count;
+        this.badgeNr = random.nextLong(1000, 10000);
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;
-        count ++;
     }
 
     public UUID getUserId() {
