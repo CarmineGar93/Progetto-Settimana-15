@@ -7,10 +7,13 @@ import CarmineGargiulo.dao.VolumeDao;
 import CarmineGargiulo.entities.*;
 import CarmineGargiulo.enums.Genre;
 import CarmineGargiulo.enums.Periodicity;
+import CarmineGargiulo.exceptions.EmptyListException;
+import CarmineGargiulo.exceptions.NotFoundException;
 import com.github.javafaker.Faker;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.RollbackException;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -46,13 +49,46 @@ public class Application {
                      authorListFromDb.get(faker.random().nextInt(0, authorListFromDb.size()-1)), genres.get(faker.random().nextInt(0, genres.size()-1)));
             volumeDao.saveVolume(book);
         }*/
-        List<Volume> volumeListFromDb = volumeDao.getAllVolums();
-        List<User> userListFromDb = userDao.getAllUsers();
+        /*List<Volume> volumeListFromDb = volumeDao.getAllVolums();
+        List<User> userListFromDb = userDao.getAllUsers();*/
         /*for (int i = 0; i < 20; i++) {
             Loan loan = new Loan(LocalDate.of(faker.random().nextInt(2000, 2024), faker.random().nextInt(1, 12), faker.random().nextInt(1, 27)),
                     userListFromDb.get(faker.random().nextInt(0, userListFromDb.size()-1)), volumeListFromDb.get(faker.random().nextInt(0, volumeListFromDb.size()-1)));
             loanDao.saveLoan(loan);
         }*/
+
+       /* System.out.println("-----------------Exercise 1-------------------");
+        System.out.println("Adding an element to the collection");
+        volumeDao.saveVolume(new Book("Bello Java", 2024, 3000, authorListFromDb.get(5), Genre.ADVENTURE));*/
+     /*   System.out.println("-----------------Exercise 2-------------------");
+        System.out.println("Removing an element given the isbn code");
+        try{
+            volumeDao.deleteVolume("d6ba5b5a-29fa-4887-88c4-875e636b273d");
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (RollbackException e) {
+            System.out.println("Sorry, the volume is currently on loan. Remove denied");
+        }*/
+      /*  System.out.println("-----------------Exercise 3-------------------");
+        System.out.println("Searching a volume given the publication year");
+        try{
+            volumeDao.searchByYear(2006).forEach(System.out::println);
+        } catch (EmptyListException e){
+            System.out.println(e.getMessage());
+        }*/
+        /*System.out.println("-----------------Exercise 4-------------------");
+        System.out.println("Searching a book given the author");
+        try{
+            volumeDao.searchByAuthor(authorListFromDb.get(1)).forEach(System.out::println);
+        } catch (EmptyListException e){
+            System.out.println(e.getMessage());
+        }*/
+        System.out.println("-----------------Exercise 4-------------------");
+        System.out.println("Searching a book given the author");
+
+
+
+
 
     }
 }
