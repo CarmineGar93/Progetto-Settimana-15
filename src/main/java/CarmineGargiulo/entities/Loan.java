@@ -25,6 +25,9 @@ public class Loan {
     @JoinColumn(name = "volume_id", nullable = false)
     private Volume volume;
 
+    public Loan(){
+
+    }
     public Loan(LocalDate loanDate, User user, Volume volume) {
         this.loanDate = loanDate;
         this.expectedReturnDate = loanDate.plusDays(30);

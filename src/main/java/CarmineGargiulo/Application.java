@@ -97,14 +97,21 @@ public class Application {
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }*/
-        System.out.println("-----------------Exercise 7-------------------");
+        /*System.out.println("-----------------Exercise 7-------------------");
         System.out.println("Searching all volume not returned given an user badge");
         try{
-            loanDao.getAllLoansFromBadgeNr(2).forEach(System.out::println);
+            loanDao.getAllLoanedVolumsFromBadgeNr(2).forEach(System.out::println);
+        } catch (EmptyListException e){
+            System.out.println(e.getMessage());
+        }*/
+        System.out.println("-----------------Exercise 8-------------------");
+        System.out.println("Searching all expired loans not yet returned");
+        try{
+            loanDao.getAllExpiredAndNotYetReturnedLoans().forEach(System.out::println);
+            System.out.println(loanDao.getAllExpiredAndNotYetReturnedLoans().size() + " loans expired");
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }
-
 
 
 

@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class LoanDao {
@@ -35,5 +36,14 @@ public class LoanDao {
         List<Volume> result = query.getResultList();
         if(result.isEmpty()) throw new EmptyListException();
         return result;
+    }
+
+    public List<Loan> getAllExpiredAndNotYetReturnedLoans(){
+        TypedQuery<Loan> query = entityManager.createQuery("SELECT l FROM Loan l WHERE l.returnDate IS NULL AND l.expectedReturnDate < :date", Loan.class);
+        query.setParameter("date", LocalDate.now());
+        List<Loan> result = query.getResultList();
+        if(result.isEmpty()) throw new EmptyListException();
+        return result;
+
     }
 }
