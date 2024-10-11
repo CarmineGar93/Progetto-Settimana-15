@@ -63,4 +63,12 @@ public class VolumeDao {
         if(result.isEmpty()) throw new EmptyListException();
         return result;
     }
+
+    public List<Volume> searchByTitle(String title){
+        TypedQuery<Volume> query = entityManager.createQuery("SELECT v FROM Volume v WHERE LOWER(v.title) LIKE :title", Volume.class);
+        query.setParameter("title", "%" + title + "%");
+        List<Volume> result = query.getResultList();
+        if(result.isEmpty()) throw new EmptyListException();
+        return result;
+    }
 }

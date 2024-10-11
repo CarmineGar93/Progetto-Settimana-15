@@ -64,28 +64,46 @@ public class Application {
         System.out.println("Removing an element given the isbn code");
         try{
             volumeDao.deleteVolume("d6ba5b5a-29fa-4887-88c4-875e636b273d");
-        } catch (NotFoundException e) {
+        } catch (NotFoundException e | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } catch (RollbackException e) {
             System.out.println("Sorry, the volume is currently on loan. Remove denied");
         }*/
-      /*  System.out.println("-----------------Exercise 3-------------------");
+        /*System.out.println("-----------------Exercise 3-------------------");
+        System.out.println("Searching a volume given the ISBN");
+        try{
+            System.out.println(volumeDao.findByIsbn("60f2e102-94f3-498a-ad1d-f62dd5915815"));
+        } catch (NotFoundException | IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }*/
+      /*  System.out.println("-----------------Exercise 4-------------------");
         System.out.println("Searching a volume given the publication year");
         try{
             volumeDao.searchByYear(2006).forEach(System.out::println);
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }*/
-        /*System.out.println("-----------------Exercise 4-------------------");
+        /*System.out.println("-----------------Exercise 5-------------------");
         System.out.println("Searching a book given the author");
         try{
             volumeDao.searchByAuthor(authorListFromDb.get(1)).forEach(System.out::println);
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }*/
-        System.out.println("-----------------Exercise 4-------------------");
-        System.out.println("Searching a book given the author");
-
+        /*System.out.println("-----------------Exercise 6-------------------");
+        System.out.println("Searching a volume given the title");
+        try{
+            volumeDao.searchByTitle("the").forEach(System.out::println);
+        } catch (EmptyListException e){
+            System.out.println(e.getMessage());
+        }*/
+        System.out.println("-----------------Exercise 7-------------------");
+        System.out.println("Searching all volume not returned given an user badge");
+        try{
+            loanDao.getAllLoansFromBadgeNr(2).forEach(System.out::println);
+        } catch (EmptyListException e){
+            System.out.println(e.getMessage());
+        }
 
 
 
