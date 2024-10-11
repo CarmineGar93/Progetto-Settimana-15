@@ -48,11 +48,11 @@ public class Application {
         }*/
         List<Volume> volumeListFromDb = volumeDao.getAllVolums();
         List<User> userListFromDb = userDao.getAllUsers();
-        for (int i = 0; i < 20; i++) {
+        /*for (int i = 0; i < 20; i++) {
             Loan loan = new Loan(LocalDate.of(faker.random().nextInt(2000, 2024), faker.random().nextInt(1, 12), faker.random().nextInt(1, 27)),
                     userListFromDb.get(faker.random().nextInt(0, userListFromDb.size()-1)), volumeListFromDb.get(faker.random().nextInt(0, volumeListFromDb.size()-1)));
             loanDao.saveLoan(loan);
-        }
+        }*/
 
     }
 }
