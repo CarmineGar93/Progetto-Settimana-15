@@ -2,6 +2,7 @@ package CarmineGargiulo.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,9 +16,15 @@ public class Author {
     private String name;
     @Column(nullable = false)
     private String surname;
+    @OneToMany(mappedBy = "author")
+    private List<Book> bookList;
 
     public Author(){
 
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
     }
 
     public Author(String name, String surname) {

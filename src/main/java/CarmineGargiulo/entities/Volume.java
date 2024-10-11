@@ -6,6 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "volume_type")
 @Table(name = "volums")
 public class Volume {
     @Id
