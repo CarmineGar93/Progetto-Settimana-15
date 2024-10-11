@@ -29,7 +29,7 @@ public class Application {
         UserDao userDao = new UserDao(em);
         VolumeDao volumeDao = new VolumeDao(em);
         LoanDao loanDao = new LoanDao(em);
-        initializeDbWithData(authorDao, userDao, volumeDao, loanDao);
+        /*initializeDbWithData(authorDao, userDao, volumeDao, loanDao);
 
         List<Author> authorListFromDb = authorDao.getAllAuthors();
         System.out.println("-----------------Exercise 1-------------------");
@@ -87,7 +87,8 @@ public class Application {
             System.out.println(loanDao.getAllExpiredAndNotYetReturnedLoans().size() + " loans expired");
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
-        }
+        }*/
+
     }
 
     public static void initializeDbWithData(AuthorDao authorDao, UserDao userDao, VolumeDao volumeDao, LoanDao loanDao){
@@ -97,7 +98,12 @@ public class Application {
         }
         for (int i = 0; i < 10; i++) {
             User user = new User(faker.name().firstName(), faker.name().lastName(), LocalDate.of(faker.random().nextInt(1950, 2006), faker.random().nextInt(1, 12), faker.random().nextInt(1, 27)));
-            userDao.saveUser(user);
+            try{
+                userDao.saveUser(user);
+            }catch (RollbackException e){
+                i--;
+            }
+
         }
         for (int i = 0; i < 10; i++) {
             List<Periodicity> periodicities = Arrays.stream(Periodicity.values()).toList();
