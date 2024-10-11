@@ -2,6 +2,7 @@ package CarmineGargiulo.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +20,8 @@ public class Volume {
     protected int publicationYear;
     @Column(name = "nr_of_pages")
     protected int nrPages;
+    @OneToMany(mappedBy = "volume")
+    protected List<Loan> loanList;
 
     public Volume(){
 
@@ -28,6 +31,10 @@ public class Volume {
         this.title = title;
         this.publicationYear = publicationYear;
         this.nrPages = nrPages;
+    }
+
+    public List<Loan> getLoanList() {
+        return loanList;
     }
 
     public UUID getIsbnCode() {

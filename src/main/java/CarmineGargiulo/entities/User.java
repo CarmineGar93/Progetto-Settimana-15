@@ -3,6 +3,7 @@ package CarmineGargiulo.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,6 +22,8 @@ public class User {
     private String surname;
     @Column(nullable = false)
     private LocalDate birthday;
+    @OneToMany(mappedBy = "user")
+    private List<Loan> loanList;
 
     public User(){
 
@@ -62,6 +65,10 @@ public class User {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    public List<Loan> getLoanList() {
+        return loanList;
     }
 
     @Override
