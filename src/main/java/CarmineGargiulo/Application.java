@@ -42,7 +42,7 @@ public class Application {
             Magazine magazine = new Magazine(faker.funnyName().name(), faker.random().nextInt(1970, 2025), faker.random().nextInt(20, 200), periodicities.get(faker.random().nextInt(0, periodicities.size()-1)));
             volumeDao.saveVolume(magazine);
         }*/
-        List<Author> authorListFromDb = authorDao.getAllAuthors();
+        /*List<Author> authorListFromDb = authorDao.getAllAuthors();*/
        /* for (int i = 0; i < 10; i++) {
             List<Genre> genres = Arrays.stream(Genre.values()).toList();
             Book book = new Book(faker.book().title(), faker.random().nextInt(1970, 2025), faker.random().nextInt(50, 1000),
@@ -104,16 +104,19 @@ public class Application {
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }*/
-        System.out.println("-----------------Exercise 8-------------------");
+        /*System.out.println("-----------------Exercise 8-------------------");
         System.out.println("Searching all expired loans not yet returned");
         try{
+            loanDao.updateLoanReturnDateByUserBadgeNr(LocalDate.now(), 2);
             loanDao.getAllExpiredAndNotYetReturnedLoans().forEach(System.out::println);
             System.out.println(loanDao.getAllExpiredAndNotYetReturnedLoans().size() + " loans expired");
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }
+*/
+    }
 
-
+    public void initializeDbWithData(){
 
     }
 }

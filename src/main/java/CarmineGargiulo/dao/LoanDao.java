@@ -3,12 +3,15 @@ package CarmineGargiulo.dao;
 import CarmineGargiulo.entities.Loan;
 import CarmineGargiulo.entities.Volume;
 import CarmineGargiulo.exceptions.EmptyListException;
+import CarmineGargiulo.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class LoanDao {
     private final EntityManager entityManager;
@@ -46,4 +49,31 @@ public class LoanDao {
         return result;
 
     }
+
+    public void updateLoanReturnDateByLoanId(LocalDate date, String loanId){
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        Query query = entityManager.createQuery("UPDATE Loan l SET l.returnDate = :date WHERE loan_id = :loanId");
+        query.setParameter("date", date);
+        query.setParameter("loanId", UUID.fromString(loanId));
+        int modified = query.executeUpdate();
+        if(modified == 0) throw new NotFoundException(loanId);
+        transaction.commit();
+        System.out.println("Loan has been updated");
+
+    }
+
+    public void updateLoanReturnDateByUserBadgeNr(LocalDate date, long badgeNr){
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        Query query = entityManager.createQuery("UPDATE Loan l SET l.returnDate = :date WHERE l.user.badgeNr = :badgeNr");
+        query.setParameter("date", date);
+        query.setParameter("badgeNr", badgeNr);
+        int modified = query.executeUpdate();
+        if(modified == 0) throw new EmptyListException();
+        transaction.commit();
+        System.out.println("Loan has been updated");
+    }
+
+
 }
