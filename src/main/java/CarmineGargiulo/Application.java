@@ -38,7 +38,7 @@ public class Application {
         System.out.println("-----------------Exercise 2-------------------");
         System.out.println("Removing an element given the isbn code");
         try{
-            volumeDao.deleteVolume("d6ba5b5a-29fa-4887-88c4-875e636b273d");
+            volumeDao.deleteVolume("7a7f7811-0529-4b40-8479-49c51bd7f465");
         } catch (NotFoundException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } catch (RollbackException e) {
@@ -47,7 +47,7 @@ public class Application {
         System.out.println("-----------------Exercise 3-------------------");
         System.out.println("Searching a volume given the ISBN");
         try{
-            System.out.println(volumeDao.findByIsbn("60f2e102-94f3-498a-ad1d-f62dd5915815"));
+            System.out.println(volumeDao.findByIsbn("1d507c01-972f-4c12-a7d1-21c65103a232"));
         } catch (NotFoundException | IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
@@ -75,14 +75,14 @@ public class Application {
         System.out.println("-----------------Exercise 7-------------------");
         System.out.println("Searching all volume not returned given an user badge");
         try{
-            loanDao.getAllLoansFromBadgeNr(2).forEach(System.out::println);
+            loanDao.getAllLoansFromBadgeNr(4580).forEach(System.out::println);
         } catch (EmptyListException e){
             System.out.println(e.getMessage());
         }
         System.out.println("-----------------Exercise 8-------------------");
         System.out.println("Searching all expired loans not yet returned");
         try{
-            loanDao.updateLoanReturnDateByUserBadgeNr(LocalDate.now(), 2);
+            loanDao.updateLoanReturnDateByUserBadgeNr(LocalDate.now(), 3393);
             loanDao.getAllExpiredAndNotYetReturnedLoans().forEach(System.out::println);
             System.out.println(loanDao.getAllExpiredAndNotYetReturnedLoans().size() + " loans expired");
         } catch (EmptyListException e){
